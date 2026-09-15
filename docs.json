@@ -66,5 +66,11 @@
         ]
       }
     ]
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "background": {
+    "decoration": "windows"
   }
 }
