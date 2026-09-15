@@ -1,0 +1,92 @@
+---
+title: "PapelShip User API Reference"
+sidebarTitle: "Introduction"
+description: "Manage your store's products, orders, customers, and payments programmatically with the PapelShip User API."
+---
+
+The PapelShip User API lets store owners manage inventory, orders, customers, coupons, and payments directly from their own systems. All endpoints return JSON and use standard HTTP verbs.
+
+## Base URL
+
+```
+https://app.papelship.com/api_user/api/v1
+```
+
+## Authentication
+
+Every request must include two headers:
+
+| Header | Description |
+| :--- | :--- |
+| `x-api-key` | Your personal API key from dashboard settings. |
+| `x-store-hash` | Your unique store identifier. |
+
+<Warning>
+  Keep your API key secret. Never expose it in client-side code or public repositories. If a key leaks, rotate it immediately from your dashboard.
+</Warning>
+
+## Example request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://app.papelship.com/api_user/api/v1/products" \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "x-store-hash: YOUR_STORE_HASH"
+```
+
+```javascript Node.js
+const response = await fetch(
+  "https://app.papelship.com/api_user/api/v1/products",
+  {
+    headers: {
+      "x-api-key": process.env.PAPELSHIP_API_KEY,
+      "x-store-hash": process.env.PAPELSHIP_STORE_HASH,
+    },
+  }
+);
+const data = await response.json();
+```
+
+```python Python
+import os, requests
+
+response = requests.get(
+    "https://app.papelship.com/api_user/api/v1/products",
+    headers={
+        "x-api-key": os.environ["PAPELSHIP_API_KEY"],
+        "x-store-hash": os.environ["PAPELSHIP_STORE_HASH"],
+    },
+)
+data = response.json()
+```
+
+</CodeGroup>
+
+## Response format
+
+Every response is JSON and includes a `success` boolean:
+
+```json
+{
+  "success": true,
+  "products": [ /* ... */ ]
+}
+```
+
+## Explore the API
+
+<CardGroup cols={2}>
+  <Card title="Analytics" icon="chart-line" href="/api-reference/endpoint/get-store-analytics">
+    Revenue, orders, and visitor statistics
+  </Card>
+  <Card title="Products" icon="box" href="/api-reference/endpoint/list-all-products">
+    Manage your product catalog
+  </Card>
+  <Card title="Invoices" icon="receipt" href="/api-reference/endpoint/list-all-invoices">
+    Orders, refunds, and transactions
+  </Card>
+  <Card title="Checkout" icon="cart-shopping" href="/api-reference/endpoint/process-checkout">
+    Programmatic order creation
+  </Card>
+</CardGroup>
