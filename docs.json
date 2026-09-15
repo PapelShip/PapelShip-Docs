@@ -72,5 +72,8 @@
   },
   "background": {
     "decoration": "windows"
+  },
+  "api": {
+    "openapi": "openapi.yaml"
   }
 }
